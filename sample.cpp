@@ -6,7 +6,7 @@
 // Ваш класс для описания тела.
 // Унаследован от GLBall, реализует его интерфейс с методами getX / getY / getR.
 // (Для точечных тел внутри getR можете сделать возврат константы.)
-class sample : public GLBall {
+class SampleBall : public GLBall {
 protected:
     double vx;
     double vy;
@@ -17,7 +17,7 @@ protected:
 public:
     // Конструктор *ваш* - что нужно, то в нём и получаете.
     // Копировать этот конструктор *не* надо.
-    sample(double x, double y, double r, double vx, double vy)
+    SampleBall(double x, double y, double r, double vx, double vy)
             : x(x), y(y), r(r), vx(vx), vy(vy) {}
 
     // Ваши методы, никак не связанные с GLBall
@@ -43,7 +43,7 @@ public:
 // Унаследован от NBodyScene, реализует интерфейс с методами getNumberOfBodies / getBody / doTimeStep.
 class SampleScene : public NBodyScene {
 protected:
-    std::vector<sample> bodies;
+    std::vector<SampleBall> bodies;
 
 public:
     // Реализация методов интерфейса на базе *ваших* переменных
@@ -57,15 +57,15 @@ public:
     }
 
     void doTimeStep() override {
-        for(sample& b : bodies)
+        for(SampleBall& b : bodies)
             b.move(0.1);
     }
 
     // Далее ещё куча ваших методов, никак не связанных с NBodyScene
 
     void initScene() {
-        bodies.push_back(sample(0, 0, 10, 1, 0));
-        bodies.push_back(sample(15, 15, 1, 0, 1));
+        bodies.push_back(SampleBall(0, 0, 10, 1, 0));
+        bodies.push_back(SampleBall(15, 15, 1, 0, 1));
     }
 };
 
